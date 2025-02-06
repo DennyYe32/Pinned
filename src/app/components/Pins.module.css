@@ -1,0 +1,21 @@
+.pinsBox { 
+    /* display: flex;
+    flex-flow: row wrap;
+    /* flex-wrap: wrap; */
+    /* justify-content: last baseline; */
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: space-around;
+    
+    padding: 12px;
+    margin: 12px;
+  }
+
+
+  
+  /* .pinsBox::after{
+    content: "";
+    flex: auto;
+
+  } */

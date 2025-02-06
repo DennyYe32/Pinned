@@ -1,0 +1,62 @@
+.pinItem a:hover,
+.pinItem a:active {
+  background: #ffd900;
+}
+.pinItem { 
+  /* padding: 12px; */
+  margin: 12px;
+
+
+  text-align: center;
+
+  box-shadow: 0 2px 8px black;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.pinItem:hover{
+    box-shadow: 0 2px 8px 0 black;
+    border: 1px solid red;
+    margin: 12px;
+    cursor: pointer;
+}
+
+.pinContent {
+  padding: 0;
+}
+
+.pinImg {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px 10px 0px 0px;
+}
+.pinInfo{
+    align-items: center;
+    font-family: Inter, sans-serif;;
+}
+
+.pinInfo h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: bold;
+  color: black;
+  display: inline;
+
+}
+.pinInfo h3 {
+    display: flex;
+    margin: 0.2em 0;
+
+}
+
+.pinItem:hover h2,
+.pinItem:active h2,
+.pinItem:hover h3,
+.pinItem:active h3 {
+  color: #292929;
+}
+
+.pinItemInfo h3 {
+  margin: 0;
+}
