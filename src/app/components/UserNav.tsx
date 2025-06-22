@@ -8,14 +8,8 @@ import SortBox from "./SortBox";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 
-const types = ["Food", "Park", "Bar", "Museum", "Theater", "Zoo"];
-const locations = [
-  "UGA Campus",
-  "Downtown",
-  "East Side",
-  "Alps",
-  "Epps Bridge",
-];
+const types = ["Restaurant", "Park", "Bar", "Museum", "Theater", "Zoo"];
+const locations = ["Campus", "Downtown", "East Side", "Alps", "Epps Bridge"];
 
 export default function UserNav({
   sorts,
@@ -42,9 +36,9 @@ export default function UserNav({
     }
   };
 
-  const loaderProp =({src}:{src:any}) => {
+  const loaderProp = ({ src }: { src: any }) => {
     return src;
-}
+  };
 
   const { data: session } = useSession();
 
