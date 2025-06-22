@@ -1,35 +1,39 @@
 import connectMongoDB from "@/libs/mongodb";
 import Pin from "@/models/pinSchema";
 import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
 import mongoose from "mongoose";
 
-interface RouteParams {
-  params: { id: string };
-}
-
-export async function GET(request: NextRequest, context: RouteParams) {
-  const { params } = await context;
-  const { id } = params;
+export async function GET(
+  request: Request,
+  context: { params: { id: string } }
+) {
+  const { id } = context.params;
   await connectMongoDB();
-  const pin = await Pin.findOne({ _id: id });
-  return NextResponse.json({ pin }, { status: 200 });
+  const pin = await Pin.findById(id);
+  if (!pin) {
+    return NextResponse.json({ message: "Pin not found" }, { status: 404 });
+  }
+  return NextResponse.json({ pin });
 }
 
-export async function PUT(request: NextRequest, context: RouteParams) {
-  const { params } = await context;
-  const { id } = params;
+export async function PUT(
+  request: Request,
+  context: { params: { id: string } }
+) {
+  const { id } = context.params;
+  const body = await request.json();
   const {
-    name: name,
-    description: description,
-    googleUrl: googleUrl,
-    type: type,
-    area: area,
-    address: address,
-    imageUrl: imageUrl,
-    lat: lat,
-    lon: lon,
-  } = await request.json();
+    name,
+    description,
+    googleUrl,
+    type,
+    area,
+    address,
+    imageUrl,
+    lat,
+    lon,
+  } = body;
+
   await connectMongoDB();
   await Pin.findByIdAndUpdate(id, {
     name,
@@ -42,19 +46,25 @@ export async function PUT(request: NextRequest, context: RouteParams) {
     lat,
     lon,
   });
-  return NextResponse.json({ message: "Pin updated " }, { status: 200 });
+
+  return NextResponse.json({ message: "Pin updated" }, { status: 200 });
 }
 
-export async function DELETE(request: NextRequest, context: RouteParams) {
-  const { params } = await context;
-  const { id } = params;
+export async function DELETE(
+  request: Request,
+  context: { params: { id: string } }
+) {
+  const { id } = context.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return NextResponse.json({ message: "Invalid ID format" }, { status: 400 });
   }
+
   await connectMongoDB();
-  const deletedItem = await Pin.findByIdAndDelete(id);
-  if (!deletedItem) {
+  const deleted = await Pin.findByIdAndDelete(id);
+
+  if (!deleted) {
     return NextResponse.json({ message: "Pin not found" }, { status: 404 });
   }
+
   return NextResponse.json({ message: "Pin deleted" }, { status: 200 });
 }

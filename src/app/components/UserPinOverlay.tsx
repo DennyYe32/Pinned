@@ -2,31 +2,28 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Button from "./Button";
-import Pin from "./Pin";
 
-// type PinProps = {
-//     pin: {
-//       id: number;
-//       name: string;
-//       type: string;
-//       area: string;
-//       address: string;
-//       imageUrl: string;
-//     };
-// };
+type PinType = {
+  _id: string;
+  name: string;
+  description: string;
+  googleUrl: string;
+  type: string;
+  area: string;
+  address: string;
+  imageUrl: string;
+};
 
-//:{isOpen: boolean, onClose: any, children: any[]}
 export function UserPinOverlay({
   isOpen,
   onClose,
   pin,
 }: {
   isOpen: boolean;
-  onClose: any;
-  pin: any;
+  onClose: () => void;
+  pin: PinType;
 }) {
-  if (isOpen == true) {
+  if (isOpen) {
     history.replaceState(null, "", "/user-home/" + pin._id);
   }
 
@@ -60,7 +57,7 @@ export function UserPinOverlay({
               </div>
               <Image
                 className="absolute z-10 top-0 left-0 w-[100%] h-[400px] rounded-t-lg object-cover"
-                src={`${pin.imageUrl}`}
+                src={pin.imageUrl}
                 alt={`picture of ${pin.name}`}
                 width={300}
                 height={300}
@@ -72,7 +69,7 @@ export function UserPinOverlay({
                 </h1>
               </div>
             </div>
-            <div className="flex  space-between m-auto bg-slate-50">
+            <div className="flex space-between m-auto bg-slate-50">
               <div className="bg-white-500 w-[50%] border-solid border-black border-r-2 border-b-2 text-center font-bold text-[20px] text-black">
                 {pin.type}
               </div>
@@ -80,9 +77,13 @@ export function UserPinOverlay({
                 {pin.area}
               </div>
             </div>
-            <div className="flex  space-between m-auto bg-slate-50">
-              <div className="w-[50%] border-solid border-black border-r-2 border-b-2 text-center font-bold  text-black text-[20px]">
-                <a href={pin.googleUrl} target="_blank">
+            <div className="flex space-between m-auto bg-slate-50">
+              <div className="w-[50%] border-solid border-black border-r-2 border-b-2 text-center font-bold text-black text-[20px]">
+                <a
+                  href={pin.googleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Directions
                 </a>
               </div>

@@ -2,15 +2,15 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 
 
 interface IPin extends Document {
-    name: String;
-    description: String;
-    googleUrl: String;
-    type: String;
-    area: String;
-    address: String;
-    imageUrl: String;
-    lat: Number;
-    lon: Number;
+    name: string;
+    description: string;
+    googleUrl: string;
+    type: string;
+    area: string;
+    address: string;
+    imageUrl: string;
+    lat: number;
+    lon: number;
     updated_date: Date;
 }
 

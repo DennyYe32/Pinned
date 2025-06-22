@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import User from "@/models/userSchema";
 import bcrypt from "bcryptjs";
 
-export async function POST(req: any) {
+export async function POST(req: Request) {
   try {
     const { name, email, password } = await req.json();
     const hashedPaswword = await bcrypt.hash(password, 10);
@@ -11,7 +11,7 @@ export async function POST(req: any) {
     await User.create({ name, email, password: hashedPaswword });
 
     return NextResponse.json({ message: "User registered." }, { status: 201 });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
         message: "An error occured while registering user.",

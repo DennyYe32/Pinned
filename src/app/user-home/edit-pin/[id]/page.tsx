@@ -1,10 +1,10 @@
 "use client";
-import { ReactEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import Image from "next/image";
-import Button from "../../../components/Button";
+import Button from "@/app/components/Button";
 import { useParams, useRouter } from "next/navigation";
-import Pin from "../../../components/Pin";
+import Pin from "@/app/components/Pin";
 
 interface Pin {
   name: string;
@@ -57,7 +57,7 @@ const EditPin = () => {
           imageUrl: pinData.imageUrl || "",
         });
       } catch (err) {
-        console.log("Error from EditPin");
+        console.log("Error from EditPin", err);
       }
     };
     if (id) {
@@ -110,11 +110,11 @@ const EditPin = () => {
         throw new Error("Network response was not ok");
       }
     } catch (err) {
-      console.log("Error in handleDelete");
+      console.log("Error in handleDelete", err);
     }
   };
 
-  const loaderProp = ({ src }: { src: any }) => {
+  const loaderProp = ({ src }: { src: string }) => {
     return src;
   };
 

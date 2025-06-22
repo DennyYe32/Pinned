@@ -1,28 +1,11 @@
 "use client";
-import { ReactEventHandler, useState } from "react";
+import { useState } from "react";
 import React from "react";
 import Image from "next/image";
 import Button from "../components/Button";
 import { useRouter } from "next/navigation";
-import Pin from "../components/Pin";
 
-type Pin = {
-  name: string;
-  type: string;
-  area: string;
-  address: string;
-  description: string;
-  lat: string;
-  lon: string;
-  googleUrl: string;
-  imageUrl: string;
-};
-
-type addPinProp = {
-  setPins: (pin: Pin) => void;
-};
-
-const AddPin: React.FC<addPinProp> = ({ setPins }) => {
+const AddPin = () => {
   const [name, setName] = useState<string>("");
   const [type, setType] = useState<string>("");
   const [area, setArea] = useState<string>("");
@@ -101,7 +84,9 @@ const AddPin: React.FC<addPinProp> = ({ setPins }) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
 
     setName("");
     setType("");

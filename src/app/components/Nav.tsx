@@ -8,7 +8,15 @@ import SortBox from "./SortBox";
 
 const types = ["Restaurant", "Park", "Bar", "Museum", "Theater", "Zoo"];
 const locations = ["Campus", "Downtown", "East Side", "Alps", "Epps Bridge"];
-const sorts = ["Name", "Location", "Type", "Distance"];
+
+interface NavProps {
+  sorts: string;
+  setSort: React.Dispatch<React.SetStateAction<string>>;
+  selectedTypes: string[];
+  setSelectedTypes: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedLoc: string[];
+  setSelectedLoc: React.Dispatch<React.SetStateAction<string[]>>;
+}
 
 export default function Nav({
   sorts,
@@ -17,14 +25,7 @@ export default function Nav({
   setSelectedTypes,
   selectedLoc,
   setSelectedLoc,
-}: {
-  sorts: string;
-  setSort: Function;
-  selectedTypes: string[];
-  setSelectedTypes: Function;
-  selectedLoc: string[];
-  setSelectedLoc: Function;
-}) {
+}: NavProps) {
   const router = useRouter();
 
   return (
@@ -49,19 +50,19 @@ export default function Nav({
 
       <br />
       <br />
-      <SortBox sorts={sorts} setSort={setSort}></SortBox>
+      <SortBox sorts={sorts} setSort={setSort} />
       <FilterBox
         title="Type"
         categories={types}
         selectedCategories={selectedTypes}
         setSelectedCategories={setSelectedTypes}
-      ></FilterBox>
+      />
       <FilterBox
         title="Locations"
         categories={locations}
         selectedCategories={selectedLoc}
         setSelectedCategories={setSelectedLoc}
-      ></FilterBox>
+      />
     </div>
   );
 }

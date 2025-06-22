@@ -1,10 +1,8 @@
 import connectMongoDB from "@/libs/mongodb";
 import Pin from "@/models/pinSchema";
 import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
-import mongoose from "mongoose";
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   const {
     name,
     description,

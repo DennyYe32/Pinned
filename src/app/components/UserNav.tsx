@@ -20,15 +20,15 @@ export default function UserNav({
   setSelectedLoc,
 }: {
   sorts: string;
-  setSort: Function;
+  setSort: (sort: string) => void;
   selectedTypes: string[];
-  setSelectedTypes: Function;
+  setSelectedTypes: (types: string[]) => void;
   selectedLoc: string[];
-  setSelectedLoc: Function;
+  setSelectedLoc: (loc: string[]) => void;
 }) {
   const router = useRouter();
 
-  const handleSignOut = async () => {
+  const handleSignOut = async (): Promise<void> => {
     try {
       await signOut({ callbackUrl: "/" });
     } catch (error) {
@@ -36,7 +36,7 @@ export default function UserNav({
     }
   };
 
-  const loaderProp = ({ src }: { src: any }) => {
+  const loaderProp = ({ src }: { src: string }) => {
     return src;
   };
 

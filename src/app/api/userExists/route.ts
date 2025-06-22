@@ -3,7 +3,7 @@ import User from "@/models/userSchema";
 import { NextResponse } from "next/server";
 
 export async function POST(req: {
-  json: () => PromiseLike<{ email: any }> | { email: any };
+  json: () => PromiseLike<{ email: string }> | { email: string };
 }) {
   try {
     await connectMongoDB();
