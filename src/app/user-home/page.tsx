@@ -42,7 +42,7 @@ export default function Home() {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [selectedLoc, setSelectedLoc] = useState<string[]>([]);
   const [isPinOverlayOpen, setIsOverlayOpen] = useState(false);
-  const [openPin, setOpenPin] = useState<Pin>();
+  const [openPin, setOpenPin] = useState<Pin | null>(null);
 
   useEffect(() => {
     if (!isPinOverlayOpen) {

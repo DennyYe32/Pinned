@@ -76,8 +76,7 @@ export default function Home() {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [selectedLoc, setSelectedLoc] = useState<string[]>([]);
 
-  const handleOverlayClose = (event: React.SyntheticEvent) => {
-    event.preventDefault();
+  const handleOverlayClose = () => {
     setIsOverlayOpen(false);
     router.push("/user-home");
     console.log("pushed on router");

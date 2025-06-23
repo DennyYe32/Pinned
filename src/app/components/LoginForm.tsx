@@ -22,7 +22,7 @@ export default function LoginForm() {
         redirect: false,
       });
 
-      if (res.error) {
+      if (res && res.error) {
         setError("Invalid Credentials");
         return;
       }

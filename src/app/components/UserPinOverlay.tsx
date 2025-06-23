@@ -21,9 +21,9 @@ export function UserPinOverlay({
 }: {
   isOpen: boolean;
   onClose: () => void;
-  pin: PinType;
+  pin: PinType | null;
 }) {
-  if (isOpen) {
+  if (isOpen && pin) {
     history.replaceState(null, "", "/user-home/" + pin._id);
   }
 
@@ -31,7 +31,7 @@ export function UserPinOverlay({
 
   return (
     <div>
-      {isOpen ? (
+      {isOpen && pin ? (
         <div>
           <div
             className="bg-slate-950 bg-opacity-75 w-[100vw] h-[100vw] fixed top-0 right-0 cursor-pointer z-10"

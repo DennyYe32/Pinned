@@ -10,8 +10,9 @@ const authOptions = {
       name: "credentials",
       credentials: {},
 
-      async authorize(credentials) {
-        const { email, password } = credentials;
+      async authorize(credentials: Record<string, string> | undefined) {
+        const email = credentials?.email;
+        const password = credentials?.password;
 
         try {
           await connectMongoDB();
@@ -21,7 +22,10 @@ const authOptions = {
             return null;
           }
 
-          const passwordsMatch = await bcrypt.compare(password, user.password);
+          const passwordsMatch = await bcrypt.compare(
+            password || "",
+            user.password
+          );
 
           if (!passwordsMatch) {
             return null;
@@ -36,7 +40,7 @@ const authOptions = {
   ],
   session: {
     strategy: "jwt",
-  },
+  } as const,
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",

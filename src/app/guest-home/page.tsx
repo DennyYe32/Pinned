@@ -42,12 +42,12 @@ export default function GuestHome() {
 
   const [sorts, setSort] = useState("Name");
 
-  const [selectedTypes, setSelectedTypes] = useState([]);
-  const [selectedLoc, setSelectedLoc] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [selectedLoc, setSelectedLoc] = useState<string[]>([]);
 
   const [isPinOverlayOpen, setIsOverlayOpen] = useState(false);
 
-  const [openPin, setOpenPin] = useState<Pin>();
+  const [openPin, setOpenPin] = useState<Pin | null>(null);
 
   return (
     <div className="min-h-screen bg-center bg-fixed bg-[url('https://content.r9cdn.net/rimg/dimg/3e/2c/96e426b6-city-17759-1688702c4c5.jpg?crop=true&width=1366&height=768&xhint=739&yhint=908')] bg-cover">

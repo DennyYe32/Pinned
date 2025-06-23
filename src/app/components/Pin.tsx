@@ -2,7 +2,8 @@ import Image from "next/image";
 import styles from "./Pin.module.css";
 import Card from "./Card";
 
-type PinData = {
+// Use the full Pin type from Pins.tsx
+export type Pin = {
   _id: string;
   name: string;
   description: string;
@@ -11,11 +12,14 @@ type PinData = {
   area: string;
   address: string;
   imageUrl: string;
+  distance: number;
+  lat: number;
+  lon: number;
 };
 
 type PinProps = {
-  pin: PinData;
-  setOpenPin: (pin: PinData) => void;
+  pin: Pin;
+  setOpenPin: (pin: Pin) => void;
   setIsOverlayOpen: (open: boolean) => void;
 };
 

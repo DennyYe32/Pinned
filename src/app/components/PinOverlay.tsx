@@ -16,7 +16,7 @@ type Pin = {
 interface PinOverlayProps {
   isOpen: boolean;
   onClose: () => void;
-  pin?: Pin;
+  pin?: Pin | null;
 }
 
 export function PinOverlay({ isOpen, onClose, pin }: PinOverlayProps) {
